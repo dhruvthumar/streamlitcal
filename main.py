@@ -51,72 +51,136 @@ for event in st.session_state.events:
     if event_date.year == year and event_date.month == month:
         event_dates.add(event_date.day)
 
-# Custom CSS for the calendar table and layout
+# Custom CSS for the calendar table and layout with mobile adjustments
 calendar_css = """
 <style>
+/* Ensure the app has a visible background */
+.stApp {
+    background-color: #f5f5f5;  /* Light gray background for the entire app */
+}
+
+/* Calendar table styling */
 .calendar-table {
     width: 100%;
     border-collapse: collapse;
     font-family: Arial, sans-serif;
     margin-right: 20px;  /* Add space between calendar and events */
+    background-color: #ffffff;  /* Explicit white background for the table */
+    border: 1px solid #ccc;  /* Ensure the table has a visible border */
 }
+
+/* Calendar cells */
 .calendar-table th, .calendar-table td {
-    border: 1px solid #ddd;
+    border: 1px solid #ccc;  /* Darker border for visibility */
     text-align: center;
-    padding: 1px;  /* Increased padding for more internal space */
-    width: 60px;  /* Slightly larger cells */
-    height: 50px;  /* Slightly larger cells */
+    padding: 1px;
     vertical-align: top;
+    color: #333;  /* Dark text color for contrast */
 }
+
+/* Responsive adjustments for mobile */
+@media (max-width: 768px) {
+    .calendar-table th, .calendar-table td {
+        width: 40px;  /* Smaller cells for mobile */
+        height: 40px;
+        font-size: 12px;  /* Smaller font for mobile */
+    }
+    .event-dot {
+        width: 4px;  /* Smaller dot for mobile */
+        height: 4px;
+        margin-top: 4px;  /* Adjust spacing */
+    }
+    .calendar-table {
+        margin-right: 10px;  /* Reduce margin on mobile */
+    }
+    .event-section {
+        padding-left: 10px;  /* Reduce padding on mobile */
+    }
+    .event-item-text {
+        font-size: 12px;  /* Smaller font for mobile */
+        margin-right: 5px;  /* Reduce spacing */
+    }
+    .delete-button {
+        padding: 2px 6px;  /* Smaller button on mobile */
+        font-size: 10px;
+    }
+}
+
+/* Desktop-specific cell sizes */
+@media (min-width: 769px) {
+    .calendar-table th, .calendar-table td {
+        width: 60px;
+        height: 50px;
+    }
+}
+
+/* Calendar header */
 .calendar-table th {
-    background-color: #f0f0f0;
+    background-color: #e0e0e0;  /* Darker gray for header */
     font-weight: bold;
+    color: #333;  /* Dark text for contrast */
 }
+
+/* Calendar cells */
 .calendar-table td {
-    background-color: #fff;
+    background-color: #ffffff;  /* Explicit white background for cells */
 }
+
+/* Day container */
 .day-container {
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
     height: 100%;
+    color: #333;  /* Dark text for visibility */
 }
+
+/* Event dot */
 .event-dot {
     display: inline-block;
-    width: 6px;  /* Slightly larger dot for visibility */
+    width: 6px;
     height: 6px;
     background-color: #FF4B4B;  /* Streamlit's orange-red accent color */
     border-radius: 50%;
-    margin-top: 8px;  /* More space between number and dot */
+    margin-top: 8px;
 }
+
+/* Event section */
 .event-section {
-    padding-left: 20px;  /* Add space on the left of the event section */
+    padding-left: 20px;
 }
+
+/* Event item */
 .event-item {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 2px 0;  /* Reduced padding to save space */
-    margin: 0;  /* Remove any extra margin */
+    padding: 2px 0;
+    margin: 0;
 }
+
+/* Event text */
 .event-item-text {
-    flex-grow: 1;  /* Allow the text to take up available space */
-    font-size: 14px;  /* Smaller font size to save space */
-    margin-right: 10px;  /* Space between text and button */
+    flex-grow: 1;
+    font-size: 14px;
+    margin-right: 10px;
+    color: #333;  /* Dark text for visibility */
 }
+
+/* Delete button */
 .delete-button {
     background-color: #ff4b4b;
     color: white;
     border: none;
     border-radius: 5px;
-    padding: 3px 8px;  /* Smaller padding for a more compact button */
+    padding: 3px 8px;
     cursor: pointer;
     font-size: 12px;
-    line-height: 0.5;  /* Prevent extra vertical space */
+    line-height: 1;
 }
 .delete-button:hover {
-    background-color: #e04343;  /* Slightly darker on hover */
+    background-color: #e04343;
 }
 </style>
 """
@@ -182,7 +246,6 @@ with col2:
                         st.session_state.events.pop(idx)
                         # Save the updated list to the JSON file
                         save_events(st.session_state.events)
-                        # Fixed f-string syntax
                         st.success(f"Event '{event['name']}' deleted.")
                         st.rerun()  # Rerun the app to refresh the UI
                     st.markdown('</div>', unsafe_allow_html=True)
