@@ -51,7 +51,7 @@ for event in st.session_state.events:
     if event_date.year == year and event_date.month == month:
         event_dates.add(event_date.day)
 
-# Custom CSS for the calendar table and layout with consistent styling
+# Custom CSS for the calendar table and layout
 calendar_css = """
 <style>
 /* Ensure the app has a visible background */
@@ -75,7 +75,7 @@ calendar_css = """
     border: 1px solid #ccc;
     text-align: center;
     padding: 1px;
-    width: 60px;  /* Same size as desktop */
+    width: 60px;
     height: 50px;
     vertical-align: top;
     color: #333;
@@ -116,13 +116,13 @@ calendar_css = """
 /* Event section */
 .event-section {
     padding-left: 20px;
-    background-color: #f8f8f8;  /* Light gray background for event section */
+    background-color: #f8f8f8;
     border-radius: 5px;
 }
 
 /* Event section text */
 .event-section h2, .event-section p {
-    color: #333;  /* Dark text for visibility */
+    color: #333;
 }
 
 /* Event item */
@@ -177,6 +177,21 @@ calendar_css = """
     background-color: #ffffff;
 }
 
+/* Streamlit date input styling */
+.stDateInput > div > div > input {
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    padding: 5px;
+    color: #333;
+    background-color: #ffffff;
+}
+
+/* Streamlit input labels (for "Event Date" and "Event Name") */
+.stTextInput > label, .stDateInput > label {
+    color: #333 !important;  /* Dark text for input labels */
+    font-weight: 500;
+}
+
 /* Streamlit success/error messages */
 .stSuccess, .stError {
     color: #333 !important;
@@ -188,32 +203,39 @@ calendar_css = """
         display: flex !important;
         flex-direction: row !important;
         flex-wrap: nowrap !important;
-        overflow-x: auto !important;  /* Allow horizontal scrolling if needed */
+        overflow-x: auto !important;
     }
     .st-emotion-cache-1r4qj9v > div {
-        flex: 0 0 auto !important;  /* Prevent columns from shrinking */
+        flex: 0 0 auto !important;
     }
     .calendar-table {
-        margin-right: 20px;  /* Keep the same margin */
+        margin-right: 20px;
     }
     .event-section {
-        padding-left: 20px;  /* Keep the same padding */
+        padding-left: 20px;
     }
     .event-item-text {
-        font-size: 14px;  /* Keep the same font size */
+        font-size: 14px;
         margin-right: 10px;
     }
     .delete-button {
-        padding: 3px 8px;  /* Keep the same button size */
+        padding: 3px 8px;
         font-size: 12px;
     }
     .stButton > button {
-        padding: 5px 10px;  /* Keep the same button size */
+        padding: 5px 10px;
         font-size: 14px;
     }
     .stTextInput > div > div > input {
         font-size: 14px;
         padding: 5px;
+    }
+    .stDateInput > div > div > input {
+        font-size: 14px;
+        padding: 5px;
+    }
+    .stTextInput > label, .stDateInput > label {
+        font-size: 14px;
     }
     .stSuccess, .stError {
         font-size: 14px;
