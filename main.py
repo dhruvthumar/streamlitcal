@@ -57,6 +57,7 @@ calendar_css = """
 /* Ensure the app has a visible background */
 .stApp {
     background-color: #f5f5f5;  /* Light gray background for the entire app */
+    color: #333;  /* Default text color for the app */
 }
 
 /* Calendar table styling */
@@ -64,66 +65,30 @@ calendar_css = """
     width: 100%;
     border-collapse: collapse;
     font-family: Arial, sans-serif;
-    margin-right: 20px;  /* Add space between calendar and events */
-    background-color: #ffffff;  /* Explicit white background for the table */
-    border: 1px solid #ccc;  /* Ensure the table has a visible border */
+    margin-right: 20px;
+    background-color: #ffffff;
+    border: 1px solid #ccc;
 }
 
 /* Calendar cells */
 .calendar-table th, .calendar-table td {
-    border: 1px solid #ccc;  /* Darker border for visibility */
+    border: 1px solid #ccc;
     text-align: center;
     padding: 1px;
     vertical-align: top;
-    color: #333;  /* Dark text color for contrast */
-}
-
-/* Responsive adjustments for mobile */
-@media (max-width: 768px) {
-    .calendar-table th, .calendar-table td {
-        width: 40px;  /* Smaller cells for mobile */
-        height: 40px;
-        font-size: 12px;  /* Smaller font for mobile */
-    }
-    .event-dot {
-        width: 4px;  /* Smaller dot for mobile */
-        height: 4px;
-        margin-top: 4px;  /* Adjust spacing */
-    }
-    .calendar-table {
-        margin-right: 10px;  /* Reduce margin on mobile */
-    }
-    .event-section {
-        padding-left: 10px;  /* Reduce padding on mobile */
-    }
-    .event-item-text {
-        font-size: 12px;  /* Smaller font for mobile */
-        margin-right: 5px;  /* Reduce spacing */
-    }
-    .delete-button {
-        padding: 2px 6px;  /* Smaller button on mobile */
-        font-size: 10px;
-    }
-}
-
-/* Desktop-specific cell sizes */
-@media (min-width: 769px) {
-    .calendar-table th, .calendar-table td {
-        width: 60px;
-        height: 50px;
-    }
+    color: #333;
 }
 
 /* Calendar header */
 .calendar-table th {
-    background-color: #e0e0e0;  /* Darker gray for header */
+    background-color: #e0e0e0;
     font-weight: bold;
-    color: #333;  /* Dark text for contrast */
+    color: #333;
 }
 
 /* Calendar cells */
 .calendar-table td {
-    background-color: #ffffff;  /* Explicit white background for cells */
+    background-color: #ffffff;
 }
 
 /* Day container */
@@ -133,7 +98,7 @@ calendar_css = """
     align-items: center;
     justify-content: center;
     height: 100%;
-    color: #333;  /* Dark text for visibility */
+    color: #333;
 }
 
 /* Event dot */
@@ -141,7 +106,7 @@ calendar_css = """
     display: inline-block;
     width: 6px;
     height: 6px;
-    background-color: #FF4B4B;  /* Streamlit's orange-red accent color */
+    background-color: #FF4B4B;
     border-radius: 50%;
     margin-top: 8px;
 }
@@ -149,6 +114,13 @@ calendar_css = """
 /* Event section */
 .event-section {
     padding-left: 20px;
+    background-color: #f8f8f8;  /* Light gray background for event section */
+    border-radius: 5px;
+}
+
+/* Event section text */
+.event-section h2, .event-section p {
+    color: #333;  /* Dark text for visibility */
 }
 
 /* Event item */
@@ -165,7 +137,7 @@ calendar_css = """
     flex-grow: 1;
     font-size: 14px;
     margin-right: 10px;
-    color: #333;  /* Dark text for visibility */
+    color: #333;
 }
 
 /* Delete button */
@@ -181,6 +153,79 @@ calendar_css = """
 }
 .delete-button:hover {
     background-color: #e04343;
+}
+
+/* Streamlit button styling */
+.stButton > button {
+    background-color: #ff4b4b;
+    color: white;
+    border-radius: 5px;
+    padding: 5px 10px;
+}
+.stButton > button:hover {
+    background-color: #e04343;
+}
+
+/* Streamlit text input styling */
+.stTextInput > div > div > input {
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    padding: 5px;
+    color: #333;
+    background-color: #ffffff;
+}
+
+/* Streamlit success/error messages */
+.stSuccess, .stError {
+    color: #333 !important;
+}
+
+/* Responsive adjustments for mobile */
+@media (max-width: 768px) {
+    .calendar-table th, .calendar-table td {
+        width: 40px;
+        height: 40px;
+        font-size: 12px;
+    }
+    .event-dot {
+        width: 4px;
+        height: 4px;
+        margin-top: 4px;
+    }
+    .calendar-table {
+        margin-right: 10px;
+    }
+    .event-section {
+        padding-left: 10px;
+        background-color: #f8f8f8;  /* Ensure background is visible on mobile */
+    }
+    .event-item-text {
+        font-size: 12px;
+        margin-right: 5px;
+    }
+    .delete-button {
+        padding: 2px 6px;
+        font-size: 10px;
+    }
+    .stButton > button {
+        padding: 3px 8px;
+        font-size: 12px;
+    }
+    .stTextInput > div > div > input {
+        font-size: 12px;
+        padding: 3px;
+    }
+    .stSuccess, .stError {
+        font-size: 12px;
+    }
+}
+
+/* Desktop-specific cell sizes */
+@media (min-width: 769px) {
+    .calendar-table th, .calendar-table td {
+        width: 60px;
+        height: 50px;
+    }
 }
 </style>
 """
