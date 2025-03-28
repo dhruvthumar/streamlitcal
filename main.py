@@ -51,7 +51,7 @@ for event in st.session_state.events:
     if event_date.year == year and event_date.month == month:
         event_dates.add(event_date.day)
 
-# Custom CSS for the calendar table and layout with mobile adjustments
+# Custom CSS for the calendar table and layout with consistent styling
 calendar_css = """
 <style>
 /* Ensure the app has a visible background */
@@ -75,6 +75,8 @@ calendar_css = """
     border: 1px solid #ccc;
     text-align: center;
     padding: 1px;
+    width: 60px;  /* Same size as desktop */
+    height: 50px;
     vertical-align: top;
     color: #333;
 }
@@ -180,51 +182,41 @@ calendar_css = """
     color: #333 !important;
 }
 
-/* Responsive adjustments for mobile */
+/* Ensure columns don't stack on mobile */
 @media (max-width: 768px) {
-    .calendar-table th, .calendar-table td {
-        width: 40px;
-        height: 40px;
-        font-size: 12px;
+    .st-emotion-cache-1r4qj9v {  /* Target Streamlit's column container */
+        display: flex !important;
+        flex-direction: row !important;
+        flex-wrap: nowrap !important;
+        overflow-x: auto !important;  /* Allow horizontal scrolling if needed */
     }
-    .event-dot {
-        width: 4px;
-        height: 4px;
-        margin-top: 4px;
+    .st-emotion-cache-1r4qj9v > div {
+        flex: 0 0 auto !important;  /* Prevent columns from shrinking */
     }
     .calendar-table {
-        margin-right: 10px;
+        margin-right: 20px;  /* Keep the same margin */
     }
     .event-section {
-        padding-left: 10px;
-        background-color: #f8f8f8;  /* Ensure background is visible on mobile */
+        padding-left: 20px;  /* Keep the same padding */
     }
     .event-item-text {
-        font-size: 12px;
-        margin-right: 5px;
+        font-size: 14px;  /* Keep the same font size */
+        margin-right: 10px;
     }
     .delete-button {
-        padding: 2px 6px;
-        font-size: 10px;
+        padding: 3px 8px;  /* Keep the same button size */
+        font-size: 12px;
     }
     .stButton > button {
-        padding: 3px 8px;
-        font-size: 12px;
+        padding: 5px 10px;  /* Keep the same button size */
+        font-size: 14px;
     }
     .stTextInput > div > div > input {
-        font-size: 12px;
-        padding: 3px;
+        font-size: 14px;
+        padding: 5px;
     }
     .stSuccess, .stError {
-        font-size: 12px;
-    }
-}
-
-/* Desktop-specific cell sizes */
-@media (min-width: 769px) {
-    .calendar-table th, .calendar-table td {
-        width: 60px;
-        height: 50px;
+        font-size: 14px;
     }
 }
 </style>
